@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block script %}
+{% endblock %}
+{% block title %}Booking{% endblock %}
+{% block body-title %}Book Here{% endblock %}
+{% block form %}
+
+<form method="post" action="{% url 'book_now' id %}">
+{% csrf_token %}
+
+                <div>
+              <label for="car" class="mb-1">Vehicle Number</label>
+              <div class="input-group mb-3">
+                  <select  name="vehicleno" class="form-control mb-3" > {% for v in vehicle %}<option value="{{v.vehicle_no}}">{{v.vehicle_no}}</option>{% endfor %}</select>
+              </div></div>
+<div>
+              <label for="noofhours" class="mb-1">No of Hours to Park</label>
+              <div class="input-group mb-3">
+                <input type="number" min="1"  name="noofhours" class="form-control mb-3" placeholder="No of Hours" required="" id="noofhours">
+              </div>
+            </div>
+
+           <input type="submit"  class="btn btn-primary rounded-pill" value="Book now">
+
+          </form>
+
+{% endblock %}

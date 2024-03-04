@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+::selection{
+  color: #ffff;
+  background: rgb(142, 73, 232);
+}
+body{
+  width: 100%;
+  height: 100vh;
+  color: white;
+
+  background: linear-gradient(to bottom, #68EACC 0%, #497BE8 100%)fixed no-repeat;
+}
+.wrapper{
+  background: #8F00FF;
+  width: 80%;
+  margin: 50px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+
+
+
+    </style>
+</head>
+<body>
+
+{% include 'message.html' %}
+  {% include 'nav.html' %}
+
+<div class="wrapper">
+
+
+
+      <div class="container mt-4  p-3 border-dark border-5 rounded">
+        <div class="row">
+         <div class="col-md-6">
+
+          <h1 style="margin-left: 30px;">Profile </h1>
+
+              <div class="profile-pic-div ">
+                <img src="{{ data.image.url }}" id="photo" class="col-md-6 rounded-circle p-2 " style="width: 200px; height: 200px; ">
+                <h1 class="col-md-6">Welcome</h1>
+
+                <h3 class="col-md-6">{{ request.user }}</h3>
+
+              </div>
+
+
+
+
+                <form>
+</div>
+
+                  <div class="col-md-6">
+
+                    <h1 class="col-12">User Info</h1>
+
+                    <label for="inputname" class="form-label my-2">Name</label>
+                    <input type="text" class="form-control" id="name" value="{{ request.user }}" readonly>
+
+                     <label for="inputfirst" class="form-label my-2">First Name</label>
+                    <input type="text" class="form-control" id="inputfirst" value="{{ request.user.first_name }}" readonly >
+
+                     <label for="inputlast" class="form-label my-2">Last Name</label>
+                    <input type="text" class="form-control" id="inputlast" value="{{ request.user.last_name }}" readonly >
+
+                    <label for="inputemail" class="form-label my-2">Email</label>
+                    <input type="text" class="form-control" id="name" value="{{ request.user.email }}" readonly>
+
+
+                    <label for="phoneno" class="form-label my-2">Phone Number</label>
+                    <input type="text" class="form-control" id="inputAddress" value="{{ data.phoneNumber}}" readonly>
+
+
+                    <label for="inputCity" class="form-label my-2">City</label>
+                    <input type="text" class="form-control " id="inputCity" value="{{ data.city }}" readonly>
+
+                    <label for="inputState" class="form-label my-2">Pincode</label>
+                    <input type = "text" id="pincode" class="form-control" value="{{ data.pincode }}" readonly>
+
+                    <label for="inputrewards" class="form-label mt-1 mb-2">Rewards
+
+                    </label>
+
+
+                    <input type="text" class="form-control" id="rewards" value="{{ data.reward_coins }}" readonly>
+
+                    <a type="submit" class="btn btn-primary rounded-pill my-3" style="width: 40%;margin-left: 30% ;" href="{% url 'edit_profile' %}" >update</a>
+
+                  </div>
+
+                </form>
+          </div>
+  </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

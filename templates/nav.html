@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container">
+         <h1 class="navbar-brand h1"  id="welcome-heading">Smart Parker</h1> 
+        {% if user.is_authenticated %}
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navmenu">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="{% url 'home' %}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'rent' %}" class="nav-link">Rent</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="" data-bs-toggle="dropdown">Profile</a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="{% url 'profile' %}">Personal Info</a></li>
+                        <li><a class="nav-link" href="{% url 'vehicle_and_booking_details' %}">Vehicle Info</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'report' %}" class="nav-link">Report</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'report_table' %}" class="nav-link">Rewards</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/home/booking_details" class="nav-link">Booking Details</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'logout' %}" class="btn btn-primary rounded-pill">Logout</a>
+                </li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</nav>

@@ -1,0 +1,56 @@
+{% extends 'base_without_nav.html' %}
+{% load static %}
+
+{% block script %}
+<script src="{% static 'eye.js' %}"></script>
+<script src="{% static 'passwordverify.js' %}"></script>
+{% endblock %}
+
+{% block title %}UserSignup{% endblock %}
+
+{% block body-title %}Signup Here{% endblock %}
+
+{% block form %}
+<form onsubmit="return checkPassword(this)" action="{% url 'signup' %}" method="post" id="usersignupform">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label for="Firstname" class="form-label text-white">First Name</label>
+        {{ form.first_name }}
+    </div>
+
+    <div class="mb-3">
+        <label for="Lastname" class="form-label text-white">Last Name</label>
+        {{ form.last_name }}
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label text-white">Email</label>
+        {{ form.email }}
+    </div>
+
+    <div class="mb-3">
+        <label for="password" class="form-label text-white">Password</label>
+        <div class="input-group">
+            {{ form.password1 }}
+            <button class="btn btn-light eye" onclick="javascript:eyelistener(document.getElementById('password'),document.getElementById('open-eye'))" type="button">
+                <i class="far fa-eye-slash" id="open-eye"></i>
+            </button>
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <label for="passwordrecheck" class="form-label text-white">Retype Password</label>
+        <div class="input-group">
+            {{ form.password2 }}
+            <button class="btn btn-light eye" onclick="javascript:eyelistener(document.getElementById('retypepassword'),document.getElementById('open-eye2'))" type="button">
+                <i class="far fa-eye-slash" id="open-eye2"></i>
+            </button>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary rounded-pill" style="margin-left:30%;width: 50%;">Sign Up</button>
+    <h4 class="text-center text-white">Already a user?</h4>
+    <a href="{% url 'login' %}" class="btn btn-primary rounded-pill" style="margin-left:30%;width: 50%;">Login</a>
+</form>
+{% endblock %}

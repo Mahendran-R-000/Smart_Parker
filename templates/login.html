@@ -1,0 +1,27 @@
+{% extends 'base_without_nav.html' %}
+{% load static %}
+{% block script %}
+<script src="{% static 'eye.js' %}"></script>
+{% endblock %}
+{% block title %}User Login{% endblock %}
+{% block body-title %}Login Here{% endblock %}
+{% block form %}
+<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="email" class="form-label text-white">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label text-white">Password</label>
+        <div class="input-group">
+            <input type="password" minlength="8" maxlength="10" class="form-control" name="password" placeholder="Enter password" required id="password">
+            <button class="btn btn-light eye" onclick="eyelistener(document.getElementById('password'),document.getElementById('open-eye'))" type="button">
+                <i class="far fa-eye-slash" id="open-eye"></i>
+            </button>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary rounded-pill">Login</button>
+    <p class="text-center text-white mt-3">Not a user? <a href="{% url 'signup' %}" class="btn btn-primary rounded-pill">Signup</a></p>
+</form>
+{% endblock %}

@@ -1,0 +1,409 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body, h1, footer {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    color: #333; /* Set default text color */
+}
+
+/* Background gradient with a slight animation */
+body {
+    background: linear-gradient(45deg, #000000, #222222);
+}
+* {
+box-sizing: border-box;
+}
+ /*
+.sidebar {
+position: absolute;
+width: 30%;
+margin-top : 7rem;
+margin-left: 4rem;
+margin-right: 4rem;
+background: orange;
+height: 90%;
+top: 0;
+left: 0;
+overflow: hidden;
+border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+ */
+.navbar {
+    background-color: #333; /* Dark gray for the navbar background */
+}
+
+/* Navbar text color */
+.navbar-dark .navbar-nav .nav-link {
+    color: #fff; /* White text color for navbar links */
+}
+
+/* Navbar brand color */
+.navbar-dark .navbar-brand {
+    color: #ff8a00; /* Orange color for the navbar brand */
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2rem; /* Adjust font size as needed */
+    text-align: center;
+    margin: 2rem 0; /* Adjust margin as needed */
+    color: white; /* Header text color */
+}
+
+
+/* Button styles */
+a input[type='submit'] {
+    display: block;
+    width: 100%;
+    margin: 1rem auto; /* Center the buttons */
+    padding: 1rem 2rem;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background-color: #4CAF50; /* Green color, adjust as needed */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/*a:hover, input[type='submit']:hover {*/
+/*    background-color: #45a049; !* Darker green color on hover *!*/
+/*}*/
+
+/* Eye icon for password visibility */
+.eye {
+    display: inline-block;
+    width: 50px;
+    cursor: pointer;
+}
+.wrapper{
+  background: #fff;
+
+  width: 90%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+
+.wrapper .todoList{
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.todoList li{
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 8px;
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 0 15px;
+  cursor: default;
+  overflow: hidden;
+}
+/* Custom styles for the navbar brand */
+#welcome-heading {
+    font-size: 2rem; /* Adjust the font size as desired */
+    font-weight: 600; /* Adjust the font weight for better readability */
+    color: #ff8a00; /* Change the color to your preferred color */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    background: none; /* Remove background */
+    -webkit-background-clip: initial; /* Ensure text color applies properly */
+    -webkit-text-fill-color: initial; /* Ensure text color applies properly */
+}
+
+
+/* Footer styles
+footer {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 1rem 0;
+    color: white;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}*/
+
+/* Header styles */
+header {
+    background: #222222;
+    padding: 1rem 0;
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+header h1 {
+    font-size: 2rem; /* Adjust font size as needed */
+    margin: 0;
+}
+
+/* Header background animation */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #000000, #222222);
+    z-index: -1;
+    animation: headerAnimation 10s infinite alternate;
+}
+ .sidebar {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #212529;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+  margin-bottom: 6rem;
+}
+
+#menu {
+position: relative;
+padding: 20px;
+width : 98%;
+background: #f4f4f4;
+margin-bottom : 2rem;
+font-family: 'Open Sans', sans-serif;
+}
+.sidebar .closebtn {
+  position: absolute;
+  margin-top : 15px;
+  right: 25px;
+  font-size: 60px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.buttons {
+  display : flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.map {
+position: absolute;
+width: 95%;
+margin-top : 0.1rem;
+border : 2px solid steelblue;
+
+height : 67%;
+bottom : 10;
+}
+
+
+.heading {
+background: #fff;
+border-bottom: 1px solid #eee;
+min-height: 60px;
+line-height: 60px;
+padding: 0 10px;
+background-color: #00853e;
+color: #fff;
+}
+
+.listings {
+height: 100%;
+overflow: auto;
+font-size: 1.3rem;
+line-height: 1.7rem;
+padding-bottom: 60px;
+}
+
+.listings .item {
+display: block;
+border-bottom: 1px solid #eee;
+color : #f4f4f4;
+padding: 10px;
+text-decoration: none;
+}
+
+.listings .item:last-child {
+border-bottom: none;
+}
+.listings .item .title {
+display: block;
+color: #00853e;
+font-weight: 700;
+}
+
+.listings .item .title small {
+font-weight: 400;
+}
+.listings .item.active .title,
+.listings .item .title:hover {
+color: #8cc63f;
+}
+.listings .item.active {
+background-color: orange;
+}
+::-webkit-scrollbar {
+width: 3px;
+height: 3px;
+border-left: 0;
+background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-track {
+background: none;
+}
+::-webkit-scrollbar-thumb {
+background: #00853e;
+border-radius: 0;
+}
+
+.marker {
+border: none;
+cursor: pointer;
+height: 56px;
+width: 56px;
+background-image: url('http://localhost:8000/static/marker.jpeg');
+background-size: cover;
+}
+
+/* Marker tweaks */
+.mapboxgl-popup {
+padding-bottom: 50px;
+}
+
+.mapboxgl-popup-close-button {
+display: none;
+}
+.mapboxgl-popup-content {
+font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+padding: 0;
+height:100%;
+width: 100%;
+}
+.mapboxgl-popup-content h3 {
+background: #91c949;
+color: #fff;
+margin: 0;
+padding: 10px;
+border-radius: 3px 3px 0 0;
+font-weight: 700;
+margin-top: -15px;
+}
+
+.mapboxgl-popup-content h4 {
+
+margin: 0;
+padding: 10px;
+font-weight: 400;
+}
+
+.mapboxgl-popup-content div {
+padding: 10px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+border-bottom-color: #91c949;
+}
+
+#footer{
+  margin-top : 6rem;
+  background: #212529;
+  padding : .1rem;
+  bottom :0;
+  position : absolute;
+  width : 100%;
+
+}
+#footer h3{
+  color : white;
+  font-size : 1rem;
+}
+
+#footer h4{
+  color : white;
+  font-size : 1rem;
+}
+.formPopup {
+
+        /*transform: translate(-50%, 5%);*/
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+   /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.formContainer {
+background:linear-gradient(to bottom, #ff512f  0%, #dd2476 100%)fixed no-repeat;
+ position:fixed;
+
+/*right:20%;*/
+left:30%;
+right:10%;
+transform: translate(auto);
+        border: 3px solid #999999;
+max-width:400px;
+        padding: 20px;
+        background-color: #fff;
+      }
+
+
+.close {
+  color: #aaaaaa;
+  float: right;
+
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}

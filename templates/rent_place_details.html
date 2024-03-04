@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+       <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="https://kit.fontawesome.com/0c85a795e6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Booking Details</title>
+
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+::selection{
+  color: #ffff;
+  background: rgb(142, 73, 232);
+}
+body{
+  width: 100%;
+  height: 100vh;
+
+ background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5);
+}
+.wrapper{
+  background: #fff;
+
+  width: 90%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+
+.wrapper .todoList{
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.todoList li{
+  position: relative;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 45px;
+  line-height: 45px;
+  margin-bottom: 8px;
+  background: #f2f2f2;
+  border-radius: 3px;
+  padding: 0 15px;
+  cursor: default;
+  overflow: hidden;
+}
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <header style="margin-bottom : 1.2rem;">Booking Details</header>
+     <div class="wrapper">
+
+                             <h1> Here Current Booking details of your places will be displayed</h1>
+                            <label for="places">Choose your registered place from options:</label>
+                                  <form method="POST" enctype="multipart/form-data">
+                                            {% csrf_token %}
+
+                                            <select name="places" id="places">
+                                            {% for place in places %}
+                                                 <option value="{{ place.place_name }}">{{ place.place_name }}</option>
+                                            {% endfor %}
+                                            </select>
+
+                                             <button type="submit"  class="btn btn-primary rounded-pill my-2" style="width: 40%;margin-left: 30% ;"><b>SEARCH</b></button>
+                                   </form>
+
+
+    </div>
+     <table class="table table-hover table-light table-striped  table-bordered table-lg todolist shadow-lg">
+      <thead>
+        <tr>
+          <th>Booking ID</th>
+          <th>Slot Id</th>
+          <th>Customer</th>
+            <th>Vehicle No</th>
+            <th>Booked Time</th>
+            <th>Duration</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {% if Booking %}
+
+             {% for booking_details in Booking %}
+        <tr>
+             <td>{{ booking_details.id}}</td>
+            <td>{{ booking_details.slot_name}}</td>
+            <td>{{ booking_details.customer}}</td>
+            <td>{{ booking_details.vehicle}}</td>
+            <td>{{ booking_details.booked_at}}</td>
+            <td>{{ booking_details.no_of_hours}}</td>
+
+          </tr>
+
+        {% endfor %}
+      </tbody>
+
+    </table>
+    {% endif %}
+</div>
+
+</body>
+</html>

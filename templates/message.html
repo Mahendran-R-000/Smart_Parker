@@ -1,0 +1,12 @@
+{% load static %}
+
+{% if messages %}
+  {% for i in messages %}
+          <script src="{% static 'message.js' %}" onload="javascript:alert_message('{{i.tags}}','{{i}}')"></script>
+{% endfor %}
+{% endif %}
+
+
+
+
+

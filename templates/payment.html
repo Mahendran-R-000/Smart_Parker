@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+    background: linear-gradient(to right, rgba(235, 224, 232, 1) 23%, rgba(254, 191, 1, 1) 64%, rgba(254, 191, 1, 1) 60%);
+    font-family: 'Roboto', sans-serif
+}
+
+.card {
+    border: none;
+    max-width: 450px;
+    border-radius: 15px;
+    margin: 150px 0 150px;
+    padding: 35px;
+    padding-bottom: 20px !important
+}
+
+.heading {
+font-weight:bold;
+text-align:center;
+    color:solid #E8E5D2 ;
+    font-size: 20px;
+
+}
+
+img {
+    transform: translate(160px, -10px)
+}
+
+.text-warning {
+    font-size: 14px;
+    font-weight: 500;
+    color: #edb537 !important
+}
+
+
+
+input {
+    border-bottom: 1.5px solid #E8E5D2 !important;
+    font-weight: bold;
+    border-radius: 0;
+    border: 0
+}
+
+.form-group input:focus {
+    border: 0;
+    outline: 0
+}
+
+.col-sm-5 {
+    padding-left: 90px
+}
+
+.btn {
+    background: blue; !important;
+    border: none;
+    border-radius: 30px
+}
+
+.btn:focus {
+    box-shadow: none
+}</style>
+<body style="background: linear-gradient(to bottom, #ff512f  0%, #dd2476 100%)fixed no-repeat;">
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+        <div class="col-sm-12">
+            <div class="card mx-auto">
+                <p class="heading">PAYMENT DETAILS</p>
+                <div style="font-size:20px;font-weight:600;" class="text-center">Amount to pay <br> Rs.{{customer.amount_to_pay}}</div>
+                <form class="card-details " method="post" onsubmit="window.onbeforeunload = null;" action="{% url 'verify' customer.pk place %}">
+                    {% csrf_token %}
+                    <div class="form-group mb-0">
+                        <p class="text-warning mb-0">Card Number</p> <input type="text" name="card-num" placeholder="Credit Card Number" size="17" id="cno" minlength="19" maxlength="19">
+                    </div>
+                    <div class="form-group">
+                        <p class="text-warning mb-0">Cardholder's Name</p> <input type="text" name="name" placeholder="Card Holder's Name" size="17">
+                    </div>
+                    <div class="form-group pt-2">
+                        <div class="row d-flex">
+                            <div class="col-sm-4">
+                                <p class="text-warning mb-0">Expiration</p> <input type="text" name="exp" placeholder="MM/YYYY" size="7" id="exp" minlength="7" maxlength="7">
+                            </div>
+                            <div class="col-sm-3">
+                                <p class="text-warning mb-0">Cvv</p> <input type="password" name="cvv" placeholder="&#9679;&#9679;&#9679;" size="1" minlength="3" maxlength="3">
+                            </div>
+                            <div class="col-sm-5 pt-0"> <button type="submit" class="btn btn-primary"><i  class="fas fa-arrow-right px-3 py-2"></i></button> </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+window.onbeforeunload = function() {return "Are you You want to Cancel the payment!"; }
+
+//window.history.go(-1);
+function pay(){
+Swal.fire(
+    {
+        background:'linear-gradient(to right, rgba(235, 224, 232, 1) 23%, rgba(254, 191, 1, 1) 64%, rgba(254, 191, 1, 1) 60%);',
+        confirmButtonColor:'#0d6efd',
+        icon: 'success',
+        title: 'Booking Processed',
+       timer: 2000,
+}).then(function() {
+window.onbeforeunload = null;
+    window.location.replace("/home");})}
+
+</script>
+</body>
+</html>

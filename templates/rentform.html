@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}Rent Registration{% endblock %}
+{% block body-title %}Register Your Land here...{% endblock %}
+{% block form %}
+       <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div>
+            <label for="name" class="mb-1 mt-3">Name</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control mb-3" value="{{ request.user }}" required="" id="name">
+            </div>
+          </div>
+          <div>
+            <label for="email" class="mb-1">Email</label>
+            <div class="input-group mb-3" >
+              <input type="email" class="form-control mb-3" value="{{ request.user.email }}" required="" id="email">
+            </div>
+          </div>
+
+           <div>
+            <label for="place_name" class="mb-1">Place Name</label>
+            <div class="input-group mb-3" >
+              <input type="text" class="form-control" name="place_name" placeholder="Enter Place Name" required="" id="place_name">
+            </div>
+          </div>
+
+            <div>
+            <label for="address" class="mb-1">Address</label>
+            <div class="input-group mb-3" >
+              <input type="text" class="form-control" name="address" placeholder="Enter Address" required="" id="address">
+            </div>
+          </div>
+
+            <div>
+                <label for="total_transport" class="mb-1">Parking Capacity</label>
+                <div class="input-group mb-3" >
+                  <input type="number" class="form-control" name="total_transport" placeholder="Enter Parking Capacity" required="" id="total_transport">
+
+                </div>
+              </div>
+
+          <div>
+            <label for="money_per_hour" class="mb-1">Money Per Hour(INR)</label>
+            <div class="input-group mb-3" >
+              <input type="text" class="form-control" placeholder="Enter money per hour" required="" id="money_per_hour" name="money_per_hour">
+            </div>
+          </div>
+
+
+
+              <div class="mb-3">
+                <label for="images" class="form-label">Upload supporting documents</label>
+                <input class="form-control" type="file" name="images"  id="images" required="" multiple>
+              </div>
+           <div class="mb-3">
+                <label for="slots_create" class="form-label">Upload Slot ID`s Document ( Excel Sheet  )</label>
+                <input class="form-control" type="file" name="slots_create"  id="slots_create" required="" >
+              </div>
+
+<div>
+            <label for="latitude" class="mb-1">Latitude</label>
+            <div class="input-group mb-3" >
+              <input type="text" class="form-control" placeholder="13.0101" required="" id="latitude" name="latitude">
+            </div>
+          </div>
+
+<div>
+            <label for="longitude" class="mb-1">Longitude</label>
+            <div class="input-group mb-3" >
+              <input type="text" class="form-control" placeholder="80.2588" required="" id="longitude" name="longitude">
+            </div>
+          </div>
+
+<input type="submit" class="btn btn-primary rounded-pill my-2" value="Register" style="width: 40% ;margin-left : 30%;">
+        </form>
+{% endblock %}
+

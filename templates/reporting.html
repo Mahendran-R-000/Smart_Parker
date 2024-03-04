@@ -1,0 +1,63 @@
+
+{% extends 'base.html' %}
+
+{% block body-title %}Reporting Form{% endblock %}
+{% block form %}
+
+   <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+       <div>
+
+
+            <div>
+              <label for="location" class="mb-1 text-white">Location</label>
+              <div class="input-group mb-3" >
+                <input type="text" name="location" class="form-control mb-3" placeholder="Enter Location" required="" id="location">
+              </div>
+            </div>
+
+
+             <div>
+              <label for="title" class="mb-1 text-white">title</label>
+              <div class="input-group mb-3" >
+                <input type="text" name="title" class="form-control mb-3" placeholder="Enter title" required="" id="title">
+              </div>
+            </div>
+
+            <div>
+              <label for="vehicleno" class="mb-1 text-white">Vechile Number</label>
+              <div class="input-group mb-3" >
+                <input type="text" class="form-control mb-3" name="transport_number" placeholder="Enter Vehicle Number" required="" id="vehicleno">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="photoproof" class="form-label text-white">Upload your proof</label>
+              <input class="form-control" type="file" id="formFileMultiple" name="images" multiple>
+            </div>
+
+            <div>
+              <label for="textarea" class="mb-1 text-white">Enter the issue here</label>
+              <textarea name="description" id="report" cols="20" rows="5" class="form-control mb-3" placeholder="Enter your issue here..."></textarea>
+            </div>
+
+           <input type="submit" class="btn btn-primary rounded-pill mb-3" value="submit" style="width: 100%;">
+       </div>
+
+<!--
+
+            <label >LOCATION: </label>
+                    <input type="text" name="location"><br><br>
+            <label >title: </label>
+                    <input type="text" name="title"><br><br>
+            <label >transport_number: </label>
+                    <input type="text" name="transport_number"><br><br>
+            <label >description: </label>
+                    <textarea type="text" name="description">  </textarea>
+            <input type="file"  name="images" multiple>
+
+        <button type="submit">Submit</button>
+        -->
+    </form>
+{% endblock %}
+{{ form.errors }}

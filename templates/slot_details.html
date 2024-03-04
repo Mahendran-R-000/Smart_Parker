@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot Details</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Title</title>
+</head>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body{
+background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5)fixed no-repeat;
+font-family: 'Poppins', sans-serif;}
+.wrapper{
+  background: #fff;
+
+  width: 90%;
+  margin: 120px auto;
+  padding: 25px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 15px rgba(0,0,0,0.1);
+}
+.wrapper header{
+  font-size: 30px;
+  font-weight: 600;
+}
+
+</style>
+<body style="background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5)fixed no-repeat;">
+{% include 'nav.html' %}
+<div class="wrapper">
+                  {% if new_or_old %}
+                             <h1> Here you can edit your slots by uploading Excel Sheets</h1>
+    <br>
+    <br>
+                            <label for="places">Choose the place for editing your slots:</label>
+                                  <form style="width:90%;" method="POST" enctype="multipart/form-data">
+                                  {% csrf_token %}
+                                   <select class="form-control"  name="places" id="places">
+                                            {% for place in places %}
+                                                 <option value="{{ place.place_name }}">{{ place.place_name }}</option>
+                                            {% endfor %}
+                                            </select>
+
+                                            <br><br>
+                                           <div class="mb-3">
+                                            <label for="slots_update" class="form-label">Upload ID`s Document ( Excel Sheet Recommended )</label>
+                                            <input class="form-control" type="file" name="slots_update"  id="slots_update" required="" >
+                                           <button type="submit"  class="btn btn-primary rounded-pill my-2" style="width: 40%;margin-left: 30% ;">Update</button>
+                                          </div>
+                                   </form>
+                      {% else %}
+                      <h1 style="margin:60px;padding:50px;" class="text-center"> Sorry you are a new user , you have to register for editing your slots by uploading your file <br>Here you can upload your slots</h1>
+                    {% endif %}
+    </div>
+</body>
+</html>

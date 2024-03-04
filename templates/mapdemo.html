@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>User Home</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<script src="https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"></script>
+
+<link href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css" rel="stylesheet">
+<link
+href="https://api.tiles.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css"
+rel="stylesheet"
+/>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+body {
+font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', 'sans-serif','Poppins';
+margin: 0;
+padding: 0;
+font-family: 'Poppins', sans-serif;
+background: linear-gradient(-45deg, #FFA63D, #FF3D77, #338AFF, #3CF0C5) fixed no-repeat;
+-webkit-font-smoothing: antialiased;
+}
+
+* {
+box-sizing: border-box;
+}
+ /*
+.sidebar {
+position: absolute;
+width: 30%;
+margin-top : 7rem;
+margin-left: 4rem;
+margin-right: 4rem;
+background: orange;
+height: 90%;
+top: 0;
+left: 0;
+overflow: hidden;
+border-right: 1px solid rgba(0, 0, 0, 0.25);
+}
+ */
+
+ .sidebar {
+  height: 100%;
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #212529;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+}
+
+#main {
+  transition: margin-left .5s;
+  padding: 20px;
+  margin-bottom: 6rem;
+}
+
+#menu {
+position: relative;
+padding: 20px;
+width : 98%;
+background: #f4f4f4;
+margin-bottom : 2rem;
+font-family: 'Open Sans', sans-serif;
+}
+.sidebar .closebtn {
+  position: absolute;
+  margin-top : 15px;
+  right: 25px;
+  font-size: 60px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.buttons {
+  display : flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.map {
+position: absolute;
+width: 95%;
+margin-top : 0.1rem;
+border : 2px solid steelblue;
+
+height : 67%;
+bottom : 10;
+}
+
+h1 {
+font-size: 22px;
+margin: 0;
+font-weight: 400;
+line-height: 20px;
+padding: 20px 2px;
+}
+
+a {
+color: #404040;
+text-decoration: none;
+}
+
+a:hover {
+color: #101010;
+}
+
+.heading {
+background: #fff;
+border-bottom: 1px solid #eee;
+min-height: 60px;
+line-height: 60px;
+padding: 0 10px;
+background-color: #00853e;
+color: #fff;
+}
+
+.listings {
+height: 100%;
+overflow: auto;
+font-size: 1.3rem;
+line-height: 1.7rem;
+padding-bottom: 60px;
+}
+
+.listings .item {
+display: block;
+border-bottom: 1px solid #eee;
+color : #f4f4f4;
+padding: 10px;
+text-decoration: none;
+}
+
+.listings .item:last-child {
+border-bottom: none;
+}
+.listings .item .title {
+display: block;
+color: #00853e;
+font-weight: 700;
+}
+
+.listings .item .title small {
+font-weight: 400;
+}
+.listings .item.active .title,
+.listings .item .title:hover {
+color: #8cc63f;
+}
+.listings .item.active {
+background-color: orange;
+}
+::-webkit-scrollbar {
+width: 3px;
+height: 3px;
+border-left: 0;
+background: rgba(0, 0, 0, 0.1);
+}
+::-webkit-scrollbar-track {
+background: none;
+}
+::-webkit-scrollbar-thumb {
+background: #00853e;
+border-radius: 0;
+}
+
+.marker {
+border: none;
+cursor: pointer;
+height: 56px;
+width: 56px;
+background-image: url('http://localhost:8000/static/marker.jpeg');
+background-size: cover;
+}
+
+/* Marker tweaks */
+.mapboxgl-popup {
+padding-bottom: 50px;
+}
+
+.mapboxgl-popup-close-button {
+display: none;
+}
+.mapboxgl-popup-content {
+font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', sans-serif;
+padding: 0;
+height:100%;
+width: 100%;
+}
+.mapboxgl-popup-content h3 {
+background: #91c949;
+color: #fff;
+margin: 0;
+padding: 10px;
+border-radius: 3px 3px 0 0;
+font-weight: 700;
+margin-top: -15px;
+}
+
+.mapboxgl-popup-content h4 {
+
+margin: 0;
+padding: 10px;
+font-weight: 400;
+}
+
+.mapboxgl-popup-content div {
+padding: 10px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
+margin-top: 15px;
+}
+
+.mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
+border-bottom-color: #91c949;
+}
+
+#footer{
+  margin-top : 6rem;
+  background: #212529;
+  padding : .1rem;
+  bottom :0;
+  position : absolute;
+  width : 100%;
+
+}
+#footer h3{
+  color : white;
+  font-size : 1rem;
+}
+
+#footer h4{
+  color : white;
+  font-size : 1rem;
+}
+.formPopup {
+
+        /*transform: translate(-50%, 5%);*/
+
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+   /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.formContainer {
+background:linear-gradient(to bottom, #ff512f  0%, #dd2476 100%)fixed no-repeat;
+ position:fixed;
+
+/*right:20%;*/
+left:30%;
+right:10%;
+transform: translate(auto);
+        border: 3px solid #999999;
+max-width:400px;
+        padding: 20px;
+        background-color: #fff;
+      }
+
+
+.close {
+  color: #aaaaaa;
+  float: right;
+
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style>
+
+</head>
+<body>
+{% include 'message.html' %}
+  {% include 'nav.html' %}
+<div class="sidebar" id="mySidebar">
+
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+<div class="heading">
+<h1>Our locations</h1>
+</div>
+<div id="listings" class="listings"></div>
+</div>
+
+<div id="main">
+  <div class="buttons">
+
+    <button class="openbtn" onclick="openNav()">&#9776; View Locations</button>
+    <h2 class = "text-white text-center mt-3">View Nearby Parking Slots Here</h2>
+
+  <button class="openbtn"  onclick="javascript:openForm()" type="button" data-toggle="tooltip" data-placement="top" title="Add">Scan QR</button>
+
+  </div>
+
+
+
+
+
+  <div id="map" class="map"></div>
+
+  <div id="menu">
+
+
+    <input id="satellite-v9" type="button" class="btn btn-info" name="rtoggle" value="satellite" checked="checked">
+    <!-- See a list of Mapbox-hosted public styles at -->
+    <!-- https://docs.mapbox.com/api/maps/styles/#mapbox-styles -->
+
+    <input id="light-v10" type="button" class="btn btn-success" name="rtoggle" value="light">
+
+    <input id="dark-v10" type="button" class="btn btn-dark" name="rtoggle" value="dark">
+
+    <input id="streets-v11" type="button" class="btn btn-warning" name="rtoggle" value="streets">
+
+    <input id="outdoors-v11" type="button" class="btn btn-primary" name="rtoggle" value="outdoors">
+
+    <input id="satellite-streets-v11" type="button" class="btn btn-secondary" name="rtoggle" value="satellite streets" checked="checked">
+
+    <input id="navigation-day-v1" type="button" class="btn btn-danger" name="rtoggle" value="Day">
+
+    <input id="navigation-night-v1" type="button" class="btn btn-success" name="rtoggle" value="Night">
+
+    </div>
+
+</div>
+
+<div id = "footer">
+  <h3 class = "text-white text-center">Copyright &copy; 2021</h3>
+
+  <h4 class = "text-white text-center">Made with  <i class="fas fa-heart" style="color : red" ></i> for Ignite Expo 2021</h4>
+
+</div>
+
+
+<div class="formPopup" id="popupForm">
+
+        <form method='POST' onsubmit="vehicle_and_booking_details" class="formContainer">
+            <span class="close">&times;</span>
+          {% csrf_token %}
+<h2>Scan QR code to Know booking Details</h2>
+          <br>
+{% load qr_code %}
+ {% qr_from_text data size=15 border=6 %}
+
+</form>
+</div>
+<script>
+      function openForm() {
+        document.getElementById("popupForm").style.display = "block";
+      }
+
+      document.getElementsByClassName("close")[0].onclick = function() {
+  document.getElementById("popupForm").style.display = "none";
+}
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/6d2ea823d0.js"></script>
+
+<script>
+
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiYWpheWdhbmFwYXRoeSIsImEiOiJja3Rwa3B4a3YwbmN3Mm5vYXVmcDZ3a2Q0In0.tDNoDJ7YnUQnBRdLChAE2Q';
+
+const layerList = document.getElementById('menu');
+const inputs = layerList.getElementsByTagName('input');
+
+for (const input of inputs) {
+input.onclick = (layer) => {
+const layerId = layer.target.id;
+map.setStyle('mapbox://styles/mapbox/' + layerId);
+};
+}
+
+
+
+function openNav() {
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("main").style.marginLeft = "25%";
+}
+
+/* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft = "0";
+}
+
+var places='{{places|safe}}';
+  //console.log(places);
+var data=JSON.parse(places);
+var store={};
+  //console.log(data);
+data.forEach(print);
+function print(item,index){
+
+    //console.log(item.pk);
+    store[index]={
+            'type': 'Feature',
+            'geometry': {
+              'type': 'Point',
+              'coordinates': [item.fields.longitude, item.fields.latitude]
+         },
+            'properties': {
+              //'phoneFormatted': '(202) 234-7336',
+              //'phone': '2022347336',
+              //'address': '1471 P St NW',
+              'id':item.pk,
+              'address': item.fields.address,
+              'place_name': item.fields.place_name,
+              'slots':item.fields.total_transport-item.fields.occupied_transport,
+              'amount':item.fields.money_per_hour,
+              //'city': 'Washington DC',
+              //'country': 'United States',
+              //'crossStreet': 'at 15th St NW',
+              //'postalCode': '20005',
+              //'state': 'D.C.'
+              }
+
+          };
+}
+
+/**
+* Add the map to the page
+*/
+const map = new mapboxgl.Map({
+container: 'map',
+style:'mapbox://styles/mapbox/satellite-streets-v11',
+center: [77.95461288482761,10.787528075599468],
+zoom: 10,
+scrollZoom: true
+});
+
+const stores = {
+        'type': 'FeatureCollection',
+        'features': [
+
+       Object.values(store)
+        ]
+      };
+console.log(stores);
+
+/**
+* Assign a unique id to each store. You'll use this `id`
+* later to associate each point on the map with a listing
+* in the sidebar.
+//stores.features.forEach((store, i) => {
+//store.properties.id = i;
+//});
+*/
+
+
+/**
+* Wait until the map loads to make changes to the map.
+*/
+    map.on('load', () => {
+      //console.log(map);
+              /**
+         * This is where your '.addLayer()' used to be, instead
+         * add only the source without styling a layer
+         */
+        map.addControl(geolocate);
+
+        map.addSource('places', {
+          'type': 'geojson',
+          'data': stores
+        });
+
+        /**
+         * Add all the things to the page:
+         * - The location listings on the side of the page
+         * - The markers onto the map
+         */
+        buildLocationList(stores);
+        addMarkers();
+      });
+
+/**
+* Add a marker to the map for every store listing.
+**/
+function addMarkers() {
+        /* For each feature in the GeoJSON object above: */
+        for (const marker of stores.features[0]) {
+        //console.log(marker);
+          /* Create a div element for the marker. */
+          const el = document.createElement('div');
+          /* Assign a unique `id` to the marker. */
+          el.id = `marker-${marker.properties.id}`;
+          /* Assign the `marker` class to each marker for styling. */
+          el.className = 'marker';
+
+
+          /**
+           * Create a marker using the div element
+           * defined above and add it to the map.
+           **/
+          new mapboxgl.Marker(el, { offset: [0, -23] })
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+
+          /**
+           * Listen to the element and when it is clicked, do three things:
+           * 1. Fly to the point
+           * 2. Close all other popups and display popup for clicked store
+           * 3. Highlight listing in sidebar (and remove highlight for all other listings)
+           **/
+          el.addEventListener('click', (e) => {
+            /* Fly to the point */
+            flyToStore(marker);
+            /* Close all other popups and display popup for clicked store */
+            createPopUp(marker);
+            /* Highlight listing in sidebar */
+            const activeItem = document.getElementsByClassName('active');
+            e.stopPropagation();
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            const listing = document.getElementById(
+              `listing-${marker.properties.id}`
+            );
+            listing.classList.add('active');
+          });
+        }
+      }
+
+      /**
+       * Add a listing for each store to the sidebar.
+       **/
+      function buildLocationList({ features }) {
+        for (const { properties } of features[0]) {
+          /* Add a new listing section to the sidebar. */
+          const listings = document.getElementById('listings');
+          const listing = listings.appendChild(document.createElement('div'));
+          /* Assign a unique `id` to the listing. */
+          listing.id = `listing-${properties.id}`;
+          /* Assign the `item` class to each listing for styling. */
+          listing.className = 'item';
+
+          /* Add the link to the individual listing created above. */
+          const link = listing.appendChild(document.createElement('a'));
+          link.href = '#';
+          link.className = 'title';
+          link.id = `link-${properties.id}`;
+          link.innerHTML = `${properties.place_name}`;
+          link.innerHTML = `${properties.address}`;
+
+          /* Add details to the individual listing. */
+          const details = listing.appendChild(document.createElement('div'));
+          link.innerHTML = `${properties.place_name}`;
+          details.innerHTML = `Address:${properties.address}`;
+          details.innerHTML += `<br>Slots Available :${properties.slots}`;
+          details.innerHTML+= `<br>Per Hour :Rs.${properties.amount}`;
+          if (properties.phone) {
+            details.innerHTML += ` &middot; ${properties.phoneFormatted}`;
+          }
+
+          /**
+           * Listen to the element and when it is clicked, do four things:
+           * 1. Update the `currentFeature` to the store associated with the clicked link
+           * 2. Fly to the point
+           * 3. Close all other popups and display popup for clicked store
+           * 4. Highlight listing in sidebar (and remove highlight for all other listings)
+           **/
+          link.addEventListener('click', function () {
+            for (const feature of features[0]) {
+              if (this.id === `link-${feature.properties.id}`) {
+                flyToStore(feature);
+                createPopUp(feature);
+              }
+            }
+            const activeItem = document.getElementsByClassName('active');
+            if (activeItem[0]) {
+              activeItem[0].classList.remove('active');
+            }
+            this.parentNode.classList.add('active');
+          });
+        }
+      }
+
+
+/**
+* Use Mapbox GL JS's `flyTo` to move the camera smoothly
+* a given center point.
+**/
+function flyToStore(currentFeature) {
+map.flyTo({
+center: currentFeature.geometry.coordinates,
+zoom: 15
+});
+}
+
+/**
+* Create a Mapbox GL JS `Popup`.
+**/
+function createPopUp(currentFeature) {
+var store_id=currentFeature.properties.id;
+const popUps = document.getElementsByClassName('mapboxgl-popup');
+if (popUps[0]) popUps[0].remove();
+const popup = new mapboxgl.Popup({ closeOnClick: false })
+.setLngLat(currentFeature.geometry.coordinates)
+.setHTML(
+`<h3>${currentFeature.properties.place_name}</h3><h4>${currentFeature.properties.address}</h4>
+<h5 class="text-warning">Rs.${currentFeature.properties.amount} per Hour<br></h5>
+<a  style="width:100%;" class="btn btn-primary" href="/home/book_now/${store_id}">Book Now</a>`
+)
+.addTo(map);
+}
+      let geolocate = new mapboxgl.GeolocateControl({
+                positionOptions: {
+                    enableHighAccuracy: true
+                },
+                trackUserLocation: true
+            })
+        //map.addControl(geolocate);
+
+
+        geolocate.on('click', function(e) {
+
+            // The event object (e) contains information like the
+            // coordinates of the point on the map that was clicked.
+            let latitude = e.lngLat.lat;
+            let longitude = e.lngLat.lng;
+            alert("Clicked");
+            $("#latitude").text(latitude);
+            $("#longitude").text(longitude);
+
+
+        });
+
+</script>
+</body>
+</html>
