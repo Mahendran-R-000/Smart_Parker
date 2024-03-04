@@ -1,6 +1,6 @@
 # SmartParker
 
-SmartParker is a web application designed to facilitate parking spot rental and management. It allows users to rent out their parking spots and enables others to book those spots for specified durations. The project is built using Django, a high-level Python web framework.
+SmartParker is a web application designed to facilitate efficient parking and reduced fuel consumption during the process. It also provides parking spot rental and management. It allows users to rent out their parking spots and enables others to book those spots for specified durations. The project is built using Django, a high-level Python web framework.
 
 ## Features
 
